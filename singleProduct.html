@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1 id="HEAD">ITEMS</h1>
+    <div></div>
+    <script>
+        const  div=document.querySelector("div");
+        const  newProdut= localStorage.getItem("id");
+        console.log(newProdut);
+
+        fetch(`https://dummyjson.com/products/${newProdut}`)
+.then(print=>print.json())
+.then(newData=>{
+  console.log(newData);
+        
+       // data.products.map(item=>{
+div.innerHTML+=`
+          <div class="mainCard">
+          <div class="cardImage">
+          <img src="${newData.images}" width="100%" />
+          </div>
+          <div class="cardContent">
+          <h3>Product : ${newData.title}</h3>
+          <h4>Product : ${newData.category}</h4>
+          <p>${newData.description}</p>
+          <h4>Stocks : ${newData.stock}</h4>
+          <p> Avaiable : <b>${newData.availabilityStatus}</b></p>
+          <h4>Price : $${newData.Price}</h4>
+          </div>
+          </div>`
+
+
+})
+.catch(err => console.error("Error aa raha h"))
+
+    </script>
+</body>
+</html>
